@@ -1,0 +1,3 @@
+[submodule "app/src/main/ymfm"]
+	path = app/src/main/ymfm
+	url = https://github.com/Team-Digital-Fairy/ymfm
