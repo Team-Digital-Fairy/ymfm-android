@@ -16,10 +16,13 @@
 #include <SLES/OpenSLES.h>
 #include <SLES/OpenSLES_Android.h>
 
+#include "vgm.h"
+
 const char* LOG_TAG = "ymfm_jni";
 
 #define LOG_E(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG,  __VA_ARGS__);
 #define LOG_D(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG,  __VA_ARGS__);
+#define LOG_I(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG,  __VA_ARGS__);
 
 static int16_t *buffer[2]; // buffer for audio
 static uint32_t buffer_size = 192;
@@ -41,7 +44,7 @@ static SLVolumeItf                      bqPlayerVolume;
 
 extern "C" {
 static void playerCallback(SLAndroidSimpleBufferQueueItf bq, void *context) {
-
+    generate_all(buffer[currentbuffer],0,44100,);
 }
 
 void startOpenSLES(int nsr, int fpb) {
@@ -140,5 +143,12 @@ void startOpenSLES(int nsr, int fpb) {
 extern "C"
 JNIEXPORT void JNICALL
 Java_team_digitalfairy_xcel_ymfm_1android_13_Ymfm_HelloWorld(JNIEnv *env, jobject thiz) {
-    // TODO: implement HelloWorld()
+    LOG_I("Hello World from JNI!");
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_team_digitalfairy_xcel_ymfm_1android_13_Ymfm_loadFile(JNIEnv *env, jobject thiz) {
+    // TODO: implement loadFile()
 }
